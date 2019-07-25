@@ -1,6 +1,8 @@
 import React from "react";
 import Actor from "./Actors";
 import Card from "./Card/Card";
+import "./Card/Card.css";
+import "./CardContainer.css";
 
 const shuffle = array => {
   let currentIndex = array.length,

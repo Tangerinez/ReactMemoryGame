@@ -1,0 +1,27 @@
+.navBarText {
+  display: inline-block;
+  padding: 26px 0;
+  width: 33.3%;
+  text-align: center;
+}
+
+.navBar {
+  background-color: #57b0da;
+  min-height: 70px;
+  position: fixed;
+  width: 100%;
+  color: #fff;
+  font-size: calc(10px + 14 * (100vw - 320px) / 800);
+  z-index: 99;
+  white-space: nowrap;
+}
+
+.navBar-list-container {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
