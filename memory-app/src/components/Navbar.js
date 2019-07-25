@@ -9,7 +9,7 @@ const Navbar = props => {
         </li>
         <li>Click an image to begin!</li>
         <li>
-          Score: {/*props for score*/} | Top Score {/*props for top score */}
+          Score: {props.score} | Top Score {props.topScore}
         </li>
       </ul>
     </nav>
