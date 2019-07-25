@@ -1,17 +1,18 @@
 import React from "react";
+import "./Card.css";
 
 const Card = props => {
-  const backgroundImageURL =
-    "background-image: url('../images/" + props.imageURL + "');";
+  const backgroundImage = {
+    backgroundImage: `url(${props.imageURL})`
+  };
   return (
     <div
       className="Card"
       key={props.id}
       id={props.id}
       onClick={() => props.imageClick(props.id)}
-    >
-      <img src={backgroundImageURL} className="actors" alt="asian-actor" />
-    </div>
+      style={backgroundImage}
+    />
   );
 };
 

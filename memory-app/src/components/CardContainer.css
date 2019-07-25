@@ -3,8 +3,8 @@
   min-height: 80%;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
   width: 90%;
   margin: 0 auto;
 }
