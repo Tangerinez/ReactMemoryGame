@@ -10,7 +10,7 @@ const Card = props => {
       className="Card"
       key={props.id}
       id={props.id}
-      onClick={() => props.imageClick(props.id)}
+      onClick={() => props.handleImageClick(props.id)}
       style={backgroundImage}
     />
   );

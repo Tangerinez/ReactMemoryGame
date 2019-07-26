@@ -8,7 +8,7 @@ const Navbar = props => {
         <li className="navBarText">Clicky Game!</li>
         <li className="navBarText">Click an image to begin!</li>
         <li className="navBarText">
-          Score: {props.score} | Top Score {props.topScore}
+          Score: {props.score} | Top Score: {props.topScore}
         </li>
       </ul>
     </nav>
