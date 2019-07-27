@@ -6,7 +6,7 @@ const Navbar = props => {
     <nav className="navBar">
       <ul className="navBar-list-container">
         <li className="navBarText">Clicky Game!</li>
-        <li className="navBarText">Click an image to begin!</li>
+        <li className="navBarText">{props.result}</li>
         <li className="navBarText">
           Score: {props.score} | Top Score: {props.topScore}
         </li>

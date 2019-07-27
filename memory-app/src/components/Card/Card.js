@@ -9,8 +9,9 @@ const Card = props => {
     <div
       className="Card"
       key={props.id}
+      value={props.id}
       id={props.id}
-      onClick={() => props.handleImageClick(props.id)}
+      onClick={props.handleImageClick(props.id)}
       style={backgroundImage}
     />
   );

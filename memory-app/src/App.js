@@ -7,15 +7,17 @@ import Actor from "./components/Actors";
 import "./App.css";
 
 const shuffle = array => {
-  let currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
+  let m = array.length,
+    t,
+    i;
+  // While there remain elements to shuffle…
+  while (m) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
   }
   return array;
 };
@@ -24,14 +26,10 @@ class App extends React.Component {
   state = {
     currentScore: 0,
     topScore: 0,
-    result: "",
+    result: "Click a player to get started",
     clickedImages: [],
     gameOver: false,
     Actor
-  };
-
-  componentDidMount = () => {
-    this.setState({ result: "Click a player to get started" });
   };
 
   handleImageClick = id => {
@@ -42,6 +40,8 @@ class App extends React.Component {
         gameOver: false,
         clickedImages: prevState.clickedImages.push(id)
       }));
+    } else {
+      this.reset();
     }
   };
 
@@ -68,7 +68,7 @@ class App extends React.Component {
     this.setState({
       currentScore: 0,
       topScore: 0,
-      result: "",
+      result: "Click a player to get started",
       clickedImages: [],
       gameOver: false,
       Actor
@@ -82,6 +82,7 @@ class App extends React.Component {
         <NavBar
           score={this.state.currentScore}
           topScore={this.state.topScore}
+          result={this.props.result}
         />
         <JumboHeader />
         <div className="cardContainer">
