@@ -11,7 +11,7 @@ const Card = props => {
       key={props.id}
       value={props.id}
       id={props.id}
-      onClick={props.handleImageClick(props.id)}
+      onClick={() => props.handleImageClick(props.id)}
       style={backgroundImage}
     />
   );

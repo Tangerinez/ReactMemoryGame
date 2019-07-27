@@ -22,24 +22,22 @@ const shuffle = array => {
   return array;
 };
 
+let clickedImages = [];
+
 class App extends React.Component {
   state = {
     currentScore: 0,
     topScore: 0,
     result: "Click a player to get started",
-    clickedImages: [],
     gameOver: false,
     Actor
   };
 
   handleImageClick = id => {
     console.log(`Picture id: ${id}`);
-    if (!this.state.clickedImages.includes(id)) {
+    if (!clickedImages.includes(id)) {
       this.increasePoints();
-      this.setState(prevState => ({
-        gameOver: false,
-        clickedImages: prevState.clickedImages.push(id)
-      }));
+      clickedImages.push(id);
     } else {
       this.reset();
     }
@@ -47,42 +45,59 @@ class App extends React.Component {
 
   increasePoints = () => {
     console.log(`Current score is: ${this.state.currentScore}`);
+    let tempState = { ...this.state };
     if (this.state.currentScore === this.state.Actor.length) {
-      this.setState({
+      clickedImages = [];
+      // let tempState = { ...this.state };
+      /* this.setState(prevState => ({
         result: "You won the game! Click to play again!",
-        topScore: this.state.currentScore,
+        topScore: prevState.currentScore + 1,
         currentScore: 0,
-        clicked: [],
-        Actor,
-        gameOver: false
-      });
+        Actor
+      }));
+      */
+      tempState.result = "You won the game! Click to play again!";
+      tempState.topScore = tempState.currentScore + 1;
+      tempState.currentScore = 0;
+      tempState.Actor = Actor;
     } else if (this.state.currentScore + 1 > this.state.topScore) {
-      this.setState(prevState => ({
+      /* this.setState(prevState => ({
         topScore: prevState.currentScore + 1,
         currentScore: prevState.currentScore + 1,
         result: "Nice! New high score!"
-      }));
+      })); */
+      tempState.result = "Nice! New high score!";
+      tempState.topScore = tempState.currentScore + 1;
+      tempState.currentScore = tempState.currentScore + 1;
     } else {
-      this.setState(prevState => ({
+      /* this.setState(prevState => ({
         currentScore: prevState.currentScore + 1,
         result: "Correct!"
-      }));
+      })); */
+      tempState.currentScore = tempState.currentScore + 1;
+      tempState.result = "Correct!";
     }
-    this.setState(prevState => ({
-      clickedImages: shuffle(prevState.clickedImages)
-    }));
+    // this.shuffleActors();
+    let shuffledActors = shuffle(Actor);
+    tempState.Actor = shuffledActors;
+    console.log(tempState);
+    this.setState(tempState);
   };
 
   reset = () => {
+    clickedImages = [];
     this.setState({
       currentScore: 0,
       topScore: 0,
       result: "Click a player to get started",
-      clickedImages: [],
-      gameOver: false,
       Actor
     });
     console.log(`Game has ended: ${this.state.gameOver}`);
+  };
+
+  shuffleActors = () => {
+    let shuffledActors = shuffle(Actor);
+    this.setState({ Actor: shuffledActors });
   };
 
   render() {
@@ -95,8 +110,9 @@ class App extends React.Component {
         />
         <JumboHeader />
         <div className="cardContainer">
-          {this.state.Actor.map(actor => (
+          {this.state.Actor.map((actor, i) => (
             <Card
+              key={i}
               id={actor.id}
               imageURL={actor.imageURL}
               handleImageClick={this.handleImageClick}
