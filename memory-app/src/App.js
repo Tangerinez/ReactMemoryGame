@@ -47,7 +47,16 @@ class App extends React.Component {
 
   increasePoints = () => {
     console.log(`Current score is: ${this.state.currentScore}`);
-    if (this.state.currentScore + 1 > this.state.topScore) {
+    if (this.state.currentScore === this.state.Actor.length) {
+      this.setState({
+        result: "You won the game! Click to play again!",
+        topScore: this.state.currentScore,
+        currentScore: 0,
+        clicked: [],
+        Actor,
+        gameOver: false
+      });
+    } else if (this.state.currentScore + 1 > this.state.topScore) {
       this.setState(prevState => ({
         topScore: prevState.currentScore + 1,
         currentScore: prevState.currentScore + 1,
