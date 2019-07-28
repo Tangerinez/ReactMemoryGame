@@ -88,7 +88,6 @@ class App extends React.Component {
     clickedImages = [];
     this.setState({
       currentScore: 0,
-      topScore: 0,
       result: "Click a player to get started",
       Actor
     });
